@@ -20,7 +20,7 @@ void Connection::connectToWiFi()
     Serial.println("WiFi connected");
     Serial.println("IP address: ");
     Serial.println(WiFi.localIP());
-    
+
     client.setServer(mqtt_server, 1883);
 }
 
@@ -62,7 +62,9 @@ void Connection::loop()
 
 void Connection::mqtt(const char *topic, const char *payload)
 {
+    Serial.println("MQTT Start Publish.");
     client.publish(topic, payload);
+    Serial.println("MQTT End Publish.");
 }
 
 bool Connection::connected()

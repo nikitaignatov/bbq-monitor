@@ -39,10 +39,8 @@ void loop()
     {
         previousMillis = millis();
 
-        Serial.println("MQTT Start Publish.");
         connection.mqtt("smoker/temperature", String("{ \"message_id\":" + String(transmissions++) + ",   \"probe_0\":" + String(probe1.get_temperature()) + ",\"probe_1\":" + String(probe1.get_temperature()) + "}").c_str());
-        Serial.println("MQTT End Publish.");
-
+        
         connection.loop();
     }
 }
