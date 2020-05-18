@@ -27,11 +27,6 @@ void setup()
 
 void loop()
 {
-    if (!connection.connected())
-    {
-        connection.connectToMqtt();
-    }
-
     probe1.read_temperature();
     probe2.read_temperature();
 
@@ -39,8 +34,13 @@ void loop()
     {
         previousMillis = millis();
 
+        if (!connection.connected())
+        {
+            connection.connectToMqtt();
+        }
+
         connection.mqtt("smoker/temperature", String("{ \"message_id\":" + String(transmissions++) + ",   \"probe_0\":" + String(probe1.get_temperature()) + ",\"probe_1\":" + String(probe1.get_temperature()) + "}").c_str());
-        
+
         connection.loop();
     }
 }
