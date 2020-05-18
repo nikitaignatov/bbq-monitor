@@ -2,8 +2,6 @@
 #include <Thermistor.h>
 #include <Connection.h>
 
-#define PROBE_COUNTS 2
-
 long transmissions = 0;
 
 long previousMillis;
